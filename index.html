@@ -1,7 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Reyane Antoine — social media and content portfolio. Boston, MA.">
+<style>
+:root{
+  color-scheme: light dark;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+body{ margin:0; font:14px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background:#faf9f5 }
+img{ max-width:100% }
+[hidden]{ display:none !important }
+</style>
 <title>Reyane Antoine</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..600,0..100,0..1&family=Karla:ital,wght@0,300..700;1,400..500&family=JetBrains+Mono:wght@400;500&display=swap">
+</head>
+<body>
 <style>
 :root{
   --ground:#0E1210; --surface:#151A16; --raise:#1C231D; --line:#2A322B;
@@ -179,6 +197,52 @@ a.frame:hover{border-color:var(--ember); transform:translateY(-2px)}
 @media print{.btn-dl{display:none!important}}
 footer{padding-block:34px 60px; color:var(--muted); font-family:var(--f-mono); font-size:.74rem; letter-spacing:.05em}
 
+/* ---------- desktop composition ----------
+   Wide viewports only. The narrow layout below 900px is deliberately untouched. */
+@media (min-width:900px){
+  /* the whole composition was sprawling to 1120px; pulling the well in keeps
+     the text measure and the media rows close to the same width */
+  :root{--wrap:980px}
+
+  /* hero: the portrait was floating away from the text */
+  .hero-inner{grid-template-columns:minmax(0,1fr) 330px}
+  .lede{max-width:38ch}
+
+  /* the lead pair sits on one baseline instead of two ragged ones,
+     letterboxed rather than cropped so nothing is cut off */
+  .work-lead .frame{height:520px; display:grid; place-items:center}
+  .work-lead .frame img{max-height:100%; width:auto; max-width:100%; object-fit:contain}
+  .work-lead .frame.tall img{aspect-ratio:auto}
+
+  /* two frames keep their size instead of leaving an empty third column */
+  .work-row--pair{grid-template-columns:repeat(2,minmax(0,1fr)); max-width:66%}
+
+  /* the case study reads top to bottom rather than jumping between
+     two columns of unequal length */
+  .two-col--prose{grid-template-columns:minmax(0,1fr); gap:clamp(16px,1.8vw,24px); max-width:68ch}
+  .two-col--prose .prose{max-width:none}
+
+  .two-col--media{grid-template-columns:minmax(0,1fr); gap:clamp(30px,4vw,44px)}
+  .two-col--media .prose{max-width:68ch}
+  .two-col--media .work-row{grid-template-columns:repeat(2,minmax(0,1fr)); max-width:66%}
+
+  /* one fixed label column, so every paragraph starts on the same line */
+  .steps .step{grid-template-columns:184px minmax(0,1fr); gap:28px}
+  .steps .step p{max-width:66ch}
+
+  /* four even columns instead of flipping between three and four */
+  .caps{grid-template-columns:repeat(4,minmax(0,1fr)); align-items:start; gap:28px}
+  .caps li{text-wrap:balance}
+
+  /* every cv-item was its own grid, so each row's date column was a
+     different width and the job titles stepped in and out */
+  .cv-item{grid-template-columns:158px minmax(0,1fr)}
+
+  /* the bands between sections were close to 200px of empty ground */
+  section{padding-block:76px}
+  .sec-head{margin-bottom:38px}
+}
+
 @media print{
   @page{ margin:13mm 12mm; }
   html,body{background:#FFFFFF!important; color:#141813!important}
@@ -278,7 +342,7 @@ footer{padding-block:34px 60px; color:var(--muted); font-family:var(--f-mono); f
       <p class="role">A new boutique hot Pilates studio in Boston. I manage both accounts end to end &#8212; coming up with the ideas, filming and shooting, editing, writing the captions, and posting.</p>
     </div>
 
-    <div class="two-col">
+    <div class="two-col two-col--prose">
       <div class="prose">
         <h3>Building a presence from close to zero</h3>
         <p>HYDE was still very new when I started, so there was no established voice to inherit. The work has been figuring out what the studio actually feels like to walk into &#8212; the classes, the instructors, the infrared heat &#8212; and turning that into content that a stranger scrolling past would stop for.</p>
@@ -406,7 +470,7 @@ footer{padding-block:34px 60px; color:var(--muted); font-family:var(--f-mono); f
       <p class="role">Bentley University. I owned the organization's Instagram and TikTok for two and a half years &#8212; design, posting, and getting people to actually turn up to what the club ran.</p>
     </div>
 
-    <div class="two-col">
+    <div class="two-col two-col--media">
       <div class="prose">
         <h3>What the job actually was</h3>
         <p>Most of the club's content existed to get people to show up to something. I made 25 or more posts over that time, weighted heavily toward event graphics rather than video, because that was what the organization needed. The account had somewhere over 200 followers when I handed it off &#8212; small, but specific, and the point was turnout rather than reach.</p>
@@ -526,3 +590,6 @@ footer{padding-block:34px 60px; color:var(--muted); font-family:var(--f-mono); f
   </div>
   <div class="wrap"><footer>Reyane Antoine &#183; Bentley University, BS Marketing &#183; Boston, MA</footer></div>
 </section>
+
+</body>
+</html>
