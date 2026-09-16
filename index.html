@@ -78,9 +78,12 @@ h1,h2,h3{font-family:var(--f-display); font-weight:450; text-wrap:balance; margi
 .nav-links a{font-family:var(--f-mono); font-size:.86rem; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); transition:color .2s}
 .nav-links a:hover{color:var(--ember)}
 @media(max-width:780px){
-  .nav-in{padding-block:13px; gap:8px 16px}
-  .nav-name{font-size:1.02rem}
-  .nav-links a{padding:0 12px; font-size:.72rem; letter-spacing:.06em}
+  .nav-in{padding-block:12px; gap:10px; flex-wrap:nowrap}
+  .nav-name{font-size:.92rem; white-space:nowrap; flex:0 0 auto}
+  .nav-links{flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch;
+    -ms-overflow-style:none; scrollbar-width:none; min-width:0}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{padding:0 10px; font-size:.68rem; letter-spacing:.04em; white-space:nowrap}
 }
 .nav-right{display:flex; gap:20px; align-items:center; flex-wrap:wrap}
 .theme-toggle{
@@ -105,6 +108,11 @@ h1,h2,h3{font-family:var(--f-display); font-weight:450; text-wrap:balance; margi
 .theme-toggle[aria-checked="true"] .tt-knob{transform:translateX(24px)}
 .theme-toggle[aria-checked="false"] .tt-sun{color:#fff}
 .theme-toggle[aria-checked="true"] .tt-moon{color:#fff}
+@media(max-width:780px){
+  .nav-right{flex-wrap:nowrap; min-width:0}
+  .nav-right .nav-links{flex:1 1 auto}
+  .theme-toggle{flex:0 0 auto; margin-left:8px}
+}
 
 /* ---------- hero ---------- */
 .hero{position:relative; padding-block:clamp(56px,10vw,108px) clamp(52px,8vw,92px); overflow:hidden}
