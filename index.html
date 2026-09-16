@@ -63,13 +63,13 @@ h1,h2,h3{font-family:var(--f-display); font-weight:450; text-wrap:balance; margi
 
 /* ---------- sticky nav ---------- */
 .nav{position:sticky; top:0; z-index:20; background:var(--bar); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
-.nav-in{display:flex; gap:10px 28px; align-items:center; justify-content:space-between; padding-block:13px; flex-wrap:wrap}
-.nav-name{font-family:var(--f-display); font-size:1.02rem; letter-spacing:.01em}
+.nav-in{display:flex; gap:12px 28px; align-items:center; justify-content:space-between; padding-block:22px; flex-wrap:wrap}
+.nav-name{font-family:var(--f-display); font-size:1.3rem; letter-spacing:.01em}
 .nav-links{display:flex; gap:8px 0; flex-wrap:wrap; align-items:baseline}
-.nav-links a{padding:0 14px; border-right:1px solid var(--line)}
+.nav-links a{padding:0 16px; border-right:1px solid var(--line)}
 .nav-links a:last-child{padding-right:0; border-right:0}
 .nav-links a:first-child{padding-left:0}
-.nav-links a{font-family:var(--f-mono); font-size:.76rem; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); transition:color .2s}
+.nav-links a{font-family:var(--f-mono); font-size:.86rem; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); transition:color .2s}
 .nav-links a:hover{color:var(--ember)}
 .nav-right{display:flex; gap:20px; align-items:center; flex-wrap:wrap}
 .theme-toggle{
@@ -130,7 +130,10 @@ section{padding-block:clamp(52px,8vw,100px)}
 .prose h3{font-size:var(--step-1); font-weight:500; letter-spacing:-.01em; margin-top:8px}
 .two-col{display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:clamp(24px,4vw,56px); align-items:start}
 .two-col--split{grid-template-columns:2.2fr 1fr}
-@media(max-width:780px){.two-col--split{grid-template-columns:1fr}}
+.two-col--aside{grid-template-columns:1fr 1fr 200px}
+@media(max-width:780px){.two-col--split,.two-col--aside{grid-template-columns:1fr}}
+@media(max-width:1000px) and (min-width:781px){.two-col--aside{grid-template-columns:1fr 1fr; grid-template-areas:"a b" "c c"}
+  .two-col--aside>.prose:first-child{grid-area:a}.two-col--aside>.prose:nth-child(2){grid-area:b}.two-col--aside>.info-list{grid-area:c}}
 .sub{font-family:var(--f-mono); font-size:var(--step--1); letter-spacing:.12em; text-transform:uppercase;
   color:var(--muted); margin:clamp(34px,5vw,54px) 0 18px}
 
@@ -157,7 +160,7 @@ a.frame:hover{border-color:var(--ember); transform:translateY(-2px)}
 
 /* ---------- metrics ---------- */
 .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(152px,1fr)); gap:10px}
-@media(min-width:781px){.metrics{grid-template-columns:repeat(6,1fr)}}
+@media(min-width:781px){.metrics{grid-template-columns:repeat(6,1fr)}.metrics--7{grid-template-columns:repeat(7,1fr)}}
 .metric{background:var(--surface); border:1px solid var(--line); border-radius:3px;
   padding:16px 16px 14px; display:grid; gap:5px; align-content:start}
 .metric .n{font-family:var(--f-mono); font-size:clamp(1.3rem,1.1rem + .8vw,1.7rem); font-weight:500;
@@ -208,10 +211,6 @@ a.frame:hover{border-color:var(--ember); transform:translateY(-2px)}
 @media(max-width:480px){.cv-list{grid-template-columns:1fr; gap:0}.cv-item>.cv-when{padding-bottom:4px; border-bottom:none}.cv-item>div{padding-top:0}}
 
 /* ---------- contact ---------- */
-.big-links{display:grid; gap:12px; margin-top:22px}
-.big-links a{font-family:var(--f-display); font-size:var(--step-2); line-height:1.15; width:fit-content;
-  border-bottom:1px solid var(--line); transition:color .2s,border-color .2s}
-.big-links a:hover{color:var(--ember); border-color:var(--ember)}
 .btn-dl{display:inline-flex; align-items:center; gap:9px; font-family:var(--f-mono);
   font-size:.72rem; letter-spacing:.09em; text-transform:uppercase; color:var(--ink);
   border:1px solid var(--line); border-radius:2px; padding:10px 15px; line-height:1;
@@ -247,7 +246,8 @@ footer{padding-block:34px 60px; color:var(--muted); font-family:var(--f-mono); f
   h2,h3{break-after:avoid-page}
   .sub{margin:6mm 0 3mm; break-after:avoid-page}
 
-  .two-col,.two-col--split{grid-template-columns:1fr; gap:5mm}
+  .two-col,.two-col--split,.two-col--aside{grid-template-columns:1fr; gap:5mm}
+  .info-list{border-top:1px solid var(--line)}
   .two-col .prose{columns:2; column-gap:7mm}
   .two-col .prose>*{break-inside:avoid-page}
   .prose{gap:10px; max-width:none}
@@ -260,6 +260,7 @@ footer{padding-block:34px 60px; color:var(--muted); font-family:var(--f-mono); f
   .cap{font-size:8pt; line-height:1.4}
 
   .metrics{grid-template-columns:repeat(6,1fr); gap:3mm}
+  .metrics--7{grid-template-columns:repeat(7,1fr)}
   .metric{padding:9px 10px}
   .metric--lead{grid-column:span 2}
   .metric .n{font-size:15pt}
@@ -326,7 +327,7 @@ footer{padding-block:34px 60px; color:var(--muted); font-family:var(--f-mono); f
       <p class="role">A new boutique hot Pilates studio in Boston. I manage both accounts end to end &#8212; coming up with the ideas, filming and shooting, editing, writing the captions, and posting.</p>
     </div>
 
-    <div class="two-col">
+    <div class="two-col two-col--aside">
       <div class="prose">
         <h3>Building a presence from close to zero</h3>
         <p>HYDE was still very new when I started, so there was no established voice to inherit. The work has been figuring out what the studio actually feels like to walk into &#8212; the classes, the instructors, the infrared heat &#8212; and turning that into content that a stranger scrolling past would stop for.</p>
@@ -338,6 +339,13 @@ footer{padding-block:34px 60px; color:var(--muted); font-family:var(--f-mono); f
         <h3>The hard part</h3>
         <p>Filming around a business that is still being built. Classes need to start on time and clients come first, so content gets made in the gaps. It has taught me to work fast, use what I have, and find the shot without getting in anyone's way.</p>
         <p class="pullquote">Views are easy to like. The number I actually care about is how many people tap the link in the bio, because that is the step before a class gets booked.</p>
+      </div>
+      <div class="info-list">
+        <div><h3>Role</h3><p>Marketing Intern &#8212; social media, end to end</p></div>
+        <div><h3>Platforms</h3><p>Instagram, TikTok</p></div>
+        <div><h3>I handle</h3><p>Concepting, filming, photography, editing, captions, scheduling, reporting</p></div>
+        <div><h3>Tools</h3><p>Canva, CapCut, Adobe Express, Meta Business Suite</p></div>
+        <div><h3>Planning</h3><p>Monthly walkthrough with the owner; shared content doc</p></div>
       </div>
     </div>
 
@@ -373,11 +381,12 @@ footer{padding-block:34px 60px; color:var(--muted); font-family:var(--f-mono); f
     </div>
 
     <p class="sub">What it did &#8212; TikTok, Jul 16 to Sep 13, 2026</p>
-    <div class="metrics">
+    <div class="metrics metrics--7">
       <div class="metric metric--lead"><span class="n">+238%</span><span class="k">Growth in post views against the previous period &#8212; 24.9K views, up 17.6K</span></div>
       <div class="metric"><span class="n">1.1K</span><span class="k">Likes</span><span class="d">+329.9%</span></div>
       <div class="metric"><span class="n">2.6K</span><span class="k">Profile views</span><span class="d">+202.6%</span></div>
       <div class="metric"><span class="n">72</span><span class="k">Shares</span><span class="d">+554.5%</span></div>
+      <div class="metric"><span class="n">69</span><span class="k">Comments</span><span class="d">+155.6%</span></div>
       <div class="metric"><span class="n">58%</span><span class="k">of views came from the For You page, not existing followers</span></div>
     </div>
 
@@ -564,7 +573,7 @@ footer{padding-block:34px 60px; color:var(--muted); font-family:var(--f-mono); f
   <div class="wrap">
     <p class="eyebrow">Currently open to</p>
     <h2 style="font-size:var(--step-2); margin-top:12px; max-width:22ch">Social media and marketing coordinator roles in the Boston area</h2>
-    <div class="big-links">
+    <div class="meta-row" style="margin-top:22px">
       <a href="mailto:reyane7@icloud.com">reyane7@icloud.com</a>
       <a href="https://www.linkedin.com/in/reyaneantoine">LinkedIn</a>
       <a href="Reyane-Antoine-Portfolio.pdf" download>Download portfolio (PDF)</a>
