@@ -77,14 +77,6 @@ h1,h2,h3{font-family:var(--f-display); font-weight:450; text-wrap:balance; margi
 .nav-links a:first-child{padding-left:0}
 .nav-links a{font-family:var(--f-mono); font-size:.86rem; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); transition:color .2s}
 .nav-links a:hover{color:var(--ember)}
-@media(max-width:780px){
-  .nav-in{padding-block:12px; gap:10px; flex-wrap:nowrap}
-  .nav-name{font-size:.92rem; white-space:nowrap; flex:0 0 auto}
-  .nav-links{flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch;
-    -ms-overflow-style:none; scrollbar-width:none; min-width:0}
-  .nav-links::-webkit-scrollbar{display:none}
-  .nav-links a{padding:0 10px; font-size:.68rem; letter-spacing:.04em; white-space:nowrap}
-}
 .nav-right{display:flex; gap:20px; align-items:center; flex-wrap:wrap}
 .theme-toggle{
   position:relative; flex:0 0 auto; width:52px; height:28px; padding:0; margin-left:auto;
@@ -109,9 +101,13 @@ h1,h2,h3{font-family:var(--f-display); font-weight:450; text-wrap:balance; margi
 .theme-toggle[aria-checked="false"] .tt-sun{color:#fff}
 .theme-toggle[aria-checked="true"] .tt-moon{color:#fff}
 @media(max-width:780px){
-  .nav-right{flex-wrap:nowrap; min-width:0}
-  .nav-right .nav-links{flex:1 1 auto}
-  .theme-toggle{flex:0 0 auto; margin-left:8px}
+  .nav-in{display:grid; grid-template-columns:1fr auto; column-gap:10px; row-gap:10px; padding-block:12px}
+  .nav-name{grid-column:1; grid-row:1; font-size:.95rem}
+  .nav-right{display:contents}
+  .theme-toggle{grid-column:2; grid-row:1; margin-left:0}
+  .nav-links{grid-column:1 / -1; grid-row:2; flex-wrap:wrap; justify-content:flex-start; gap:8px 0}
+  .nav-links a{padding:0 8px; font-size:.72rem; letter-spacing:.05em}
+  .nav-links a:first-child{padding-left:0}
 }
 
 /* ---------- hero ---------- */
